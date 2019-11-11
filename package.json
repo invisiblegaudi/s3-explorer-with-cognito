@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://gitlab.com/invisiblegaudi/s3-explorer/issues"
   },
-  "homepage": "https://gitlab.com/invisiblegaudi/s3-explorer#readme"
+  "homepage": "https://gitlab.com/invisiblegaudi/s3-explorer#readme",
+  "dependencies": {
+    "aws-sdk": "^2.568.0"
+  }
 }
