@@ -6,28 +6,6 @@ const { UserPoolId, ClientId, ApiGatewayUrl } = require('../config/aws.json');
 global.fetch = require('node-fetch')
 const { CognitoUserPool, CognitoUser, AuthenticationDetails } = require('amazon-cognito-identity-js');
 
-const Pool = new CognitoUserPool({
-  UserPoolId,
-  ClientId,
-});
-
-let { Username, Password } = user1;
-
-let cognitoUser = new CognitoUser({
-  Username,
-  Pool,
-});
-
-const authenticationDetails = new AuthenticationDetails({
-  Username,
-  Password,
-});
-
-const newPasswordRequired = (userAttributes, requiredAttributes) => {
-  userAttributes['email'] = 'email@address.mock';
-  cognitoUser.completeNewPasswordChallenge('defaultpassword', userAttributes, this);
-}
-
 let success, failure;
 
 const result = new Promise((resolve, reject) => {
