@@ -8,7 +8,10 @@
     "dev": "npm-watch"
   },
   "watch": {
-    "test": "{src,test}/*.js"
+    "test": {
+      "patterns": ["src", "test"],
+      "extensions": "js, jsx, json"
+    }
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,7 @@
   },
   "homepage": "https://gitlab.com/invisiblegaudi/s3-explorer#readme",
   "dependencies": {
+    "amazon-cognito-identity-js": "^3.2.0",
     "aws-sdk": "^2.568.0",
     "node-fetch": "^2.6.0"
   },
