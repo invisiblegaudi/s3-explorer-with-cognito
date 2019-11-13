@@ -1,0 +1,7 @@
+{
+  "UserPoolId": "eu-west-XXXXXXXXXXX",
+  "ClientId": "XXXXXXXXXXXXXXXXXXXXXXXX",
+  "ApiGatewayUrl": "https://XXXXXXXXXX.execute-api.eu-west-2.amazonaws.com/MyAwesomeAPI",
+  "S3Bucket": "LordBucketHeadIII",
+  "S3BucketUrl": "https://LordBucketHeadIII.s3.eu-west-2.amazonaws.com"
+}
