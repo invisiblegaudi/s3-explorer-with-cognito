@@ -2,6 +2,7 @@ env:
   browser: true
   commonjs: true
   es6: true
+  mocha: true
 extends:
   - airbnb
 globals:
@@ -13,4 +14,11 @@ parserOptions:
   ecmaVersion: 2018
 plugins:
   - react
-rules: {}
+rules: {
+    "no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "should|expect"
+      }
+    ]
+  }

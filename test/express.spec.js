@@ -8,11 +8,19 @@ should.should.have.property('fail');
 
 chai.use(chaiHttp);
 
+let homepage;
+
 tags('express', 'app', 'backend')
   .describe('Express App', () => {
     it('is running', async () => {
-     chai.request(app)
+      homepage = await chai
+        .request(app)
         .get('/');
     });
-  });
 
+    it('is rendering the template', () => {
+      homepage.body.should.not.be.empty;
+      homepage.body.should.contain('<head>');
+      homepage.body.should.contain('<body>');
+    });
+  });
