@@ -14,7 +14,7 @@
         "test",
         "views"
       ],
-      "extensions": "js, jsx, json"
+      "extensions": "js, jsx, json, pug"
     }
   },
   "repository": {

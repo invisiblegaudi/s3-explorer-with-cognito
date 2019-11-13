@@ -1,0 +1,12 @@
+html
+  head
+    title Files in S3 bucket #{bucketName}
+  body
+    h1 Files in S3 bucket "#{bucketName}":
+    ul
+    each file in files
+      li
+        a(href= file.downloadURL) #{file.Key}
+        |  #{Math.round(file.Size/1024)}kb
+        |  - #{new Date(file.LastModified)}
+

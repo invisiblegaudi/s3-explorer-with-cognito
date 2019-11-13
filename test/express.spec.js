@@ -2,6 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const tags = require('mocha-tags');
 const app = require('../src/index');
+const { ApiGatewayUrl, S3Bucket, S3BucketUrl } = require('../config/aws.json');
 
 const should = chai.should();
 should.should.have.property('fail');
@@ -26,5 +27,18 @@ tags('express', 'app', 'backend')
       page.should.not.be.empty;
       page.should.contain('<head>');
       page.should.contain('<body>');
+    });
+
+    it('loads bucket from url', async () => {
+      response = await chai
+        .request(app)
+        .get(`/${S3Bucket}`);
+      response.status.should.equal(200);
+      page = response.text;
+      page.should.not.be.empty;
+      page.should.contain('<head>');
+      page.should.contain('<body>');
+      page.should.contain('<ul>');
+      page.should.contain('<li>');
     });
   });
