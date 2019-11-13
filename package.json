@@ -11,7 +11,8 @@
     "test": {
       "patterns": [
         "src",
-        "test"
+        "test",
+        "views"
       ],
       "extensions": "js, jsx, json"
     }
