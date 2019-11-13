@@ -3,7 +3,8 @@ const chaiHttp = require('chai-http');
 const tags = require('mocha-tags');
 const { ApiGatewayUrl, S3Bucket } = require('../config/aws.json');
 const auth = require('../src/auth');
-
+var AWS = require('aws-sdk');
+// Set the region 
 const should = chai.should();
 should.should.have.property('fail');
 
@@ -37,24 +38,9 @@ tags('aws', 'auth', 'api')
       gateway.status.should.be.equal(200);
     });
 
-    it('returns signed url for bucket access', () => {
-      signedUrl = gateway.body;
-      signedUrl.should.contain(`https://${S3Bucket}`);
-    });
-
-    it('returns details of bucket files', async () => {
-      const signedUrlSplit = signedUrl.split('/');
-      const { accessToken } = response;
-
-      const bucket = await chai
-            .request(`https://${signedUrlSplit[2]}`)
-            .get(signedUrlSplit[3]);
-
-      bucket.status.should.equal(200);
-
-      console.log(
-        bucket.body
-      );
-      files.forEach(file => file.should.have.property('name'));
+    it('returns details of bucket files', () => {
+      gateway.body.should.be.an('array').that.is.not.empty;
+      gateway.body[0].should.be.an('object').that.is.not.empty;
+      gateway.body[0].should.have.property('Key').that.is.a.string;
     });
   });
