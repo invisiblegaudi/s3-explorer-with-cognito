@@ -15,7 +15,6 @@ let files;
 
 tags('aws', 'auth', 'api')
   .describe('AWS API', () => {
-
     it('is running', async () => {
       response = await chai
         .request(ApiGatewayUrl)
