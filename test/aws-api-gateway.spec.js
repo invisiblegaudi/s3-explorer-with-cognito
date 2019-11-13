@@ -11,11 +11,12 @@ chai.use(chaiHttp);
 
 let response;
 let gateway;
+let signedUrl;
 
 tags('aws', 'auth', 'api')
   .describe('AWS API', () => {
-    it('is running', async () => {
 
+    it('is running', async () => {
       response = await chai
         .request(ApiGatewayUrl)
         .get('');
@@ -37,6 +38,23 @@ tags('aws', 'auth', 'api')
     });
 
     it('returns signed url for bucket access', () => {
-      gateway.body.should.contain(`https://${S3Bucket}`);
+      signedUrl = gateway.body;
+      signedUrl.should.contain(`https://${S3Bucket}`);
+    });
+
+    it('returns details of bucket files', async () => {
+      const signedUrlSplit = signedUrl.split('/');
+      const { accessToken } = response;
+
+      const bucket = await chai
+            .request(`https://${signedUrlSplit[2]}`)
+            .get(signedUrlSplit[3]);
+
+      bucket.status.should.equal(200);
+
+      console.log(
+        bucket.body
+      );
+      files.forEach(file => file.should.have.property('name'));
     });
   });
