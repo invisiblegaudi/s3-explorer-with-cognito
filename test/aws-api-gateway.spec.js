@@ -1,24 +1,26 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const tags = require('mocha-tags');
-const fetch = require('node-fetch');
 const { ApiGatewayUrl, S3Bucket } = require('../config/aws.json');
 const auth = require('../src/auth');
 
 const should = chai.should();
+should.should.have.property('fail');
+
 chai.use(chaiHttp);
 
 let response;
+let gateway;
 
 tags('aws', 'auth', 'api')
   .describe('AWS API', () => {
     it('is running', async () => {
 
       response = await chai
-            .request(ApiGatewayUrl)
-            .get('');
+        .request(ApiGatewayUrl)
+        .get('');
 
-      response.should.have.property('status', 500)
+      response.should.have.property('status', 500);
     });
 
     it('responds with access token', async () => {
@@ -28,14 +30,13 @@ tags('aws', 'auth', 'api')
 
     it('allows access to lambda endpoint', async () => {
       const { accessToken } = response;
-      const gateway = await fetch(ApiGatewayUrl+'/'+S3Bucket, {
-        method:'GET',
-        referrer: 'no-referrer',
-        headers: {
-          Authorization: accessToken,
-          "Access-Control-Request-Method": "GET",
-        }
-      });
-    })
+      gateway = await chai.request(ApiGatewayUrl)
+        .get(`/${S3Bucket}`)
+        .set('Authorization', accessToken);
+      gateway.status.should.be.equal(200);
+    });
 
+    it('returns signed url for bucket access', () => {
+      gateway.body.should.contain(`https://${S3Bucket}`);
+    });
   });
