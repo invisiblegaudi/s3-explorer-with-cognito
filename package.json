@@ -1,6 +1,6 @@
 {
-  "name": "s3-browser",
-  "version": "0.0.0",
+  "name": "s3-explorer",
+  "version": "1.0.0",
   "description": "Allows you to browse the files of private S3 buckets",
   "main": "index.js",
   "scripts": {

@@ -27,7 +27,7 @@ const onSuccess = (...args) => {
 
 const newPasswordRequired = (userAttributes, requiredAttributes) => {
   userAttributes['email'] = 'email@address.mock';
-  cognitoUser.completeNewPasswordChallenge('defaultpassword', userAttributes, this);
+  cognitoUser.completeNewPasswordChallenge('bananas', userAttributes, this);
 }
 
 const cognitoResponse = {
