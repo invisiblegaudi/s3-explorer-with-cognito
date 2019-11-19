@@ -1,6 +1,6 @@
 {
   "name": "node-s3-cognito",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Allow AWS Cognito users access to S3 buckets via NodeJS",
   "main": "index.js",
   "scripts": {
