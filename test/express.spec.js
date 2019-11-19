@@ -2,7 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const tags = require('mocha-tags');
 const app = require('../src/index');
-const { ApiGatewayUrl, S3Bucket, S3BucketUrl } = require('../config/aws.json');
+const { S3Bucket } = require('../config/aws.json');
 
 const should = chai.should();
 should.should.have.property('fail');
@@ -24,7 +24,9 @@ tags('express', 'app', 'backend')
     it('is rendering the homepage template', () => {
       response.type.should.be.equal('text/html');
       page = response.text;
+      /* eslint-disable no-unused-expressions */
       page.should.not.be.empty;
+      /* eslint-enable no-unused-expressions */
       page.should.contain('<head>');
       page.should.contain('<body>');
     });
@@ -35,7 +37,9 @@ tags('express', 'app', 'backend')
         .get(`/${S3Bucket}`);
       response.status.should.equal(200);
       page = response.text;
+      /* eslint-disable no-unused-expressions */
       page.should.not.be.empty;
+      /* eslint-enable no-unused-expressions */
       page.should.contain('<head>');
       page.should.contain('<body>');
       page.should.contain('<ul>');

@@ -1,10 +1,13 @@
 global.fetch = require('node-fetch'); // fetch required for amazon congnito lib
 
-const { CognitoUserPool,
-        CognitoUser,
-        AuthenticationDetails } = require('amazon-cognito-identity-js');
+const {
+  CognitoUserPool,
+  CognitoUser,
+  AuthenticationDetails,
+} = require('amazon-cognito-identity-js');
 
-let success, failure;
+let success;
+let failure;
 
 const response = new Promise((resolve, reject) => {
   success = resolve;
@@ -12,29 +15,29 @@ const response = new Promise((resolve, reject) => {
 });
 
 const onFailure = (...args) => {
-  const [ message ] = [ ...args ];
-  if(message) {
+  const [message] = [...args];
+  if (message) {
     failure(message);
   }
-}
+};
 
 const onSuccess = (...args) => {
-  const [ message ] = [ ...args ];
-  if(message) {
+  const [message] = [...args];
+  if (message) {
     success(message);
   }
-}
+};
 
-const newPasswordRequired = (userAttributes, requiredAttributes) => {
-  userAttributes['email'] = 'email@address.mock';
+const newPasswordRequired = (userAttributes, cognitoUser) => {
+  Object.assign(userAttributes, { email: 'email@address.mock' });
   cognitoUser.completeNewPasswordChallenge('bananas', userAttributes, this);
-}
+};
 
 const cognitoResponse = {
   onSuccess,
   onFailure,
   newPasswordRequired,
-}
+};
 
 const authenticateUser = (user, UserPoolId, ClientId) => {
   const { Username, Password } = user;
@@ -57,8 +60,8 @@ const authenticateUser = (user, UserPoolId, ClientId) => {
   cognito.authenticateUser(authDetails, cognitoResponse);
 
   return response;
-}
+};
 
 module.exports = {
   authenticateUser,
-}
+};

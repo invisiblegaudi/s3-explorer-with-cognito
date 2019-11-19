@@ -5,4 +5,4 @@ const { UserPoolId, ClientId, ApiGatewayUrl } = require('../config/aws.json');
 const defaultApiGateway = (...args) => authenticateUser(user1, ...args);
 const defaultAuth = defaultApiGateway(UserPoolId, ClientId, ApiGatewayUrl);
 
-module.exports = defaultAuth
+module.exports = defaultAuth;

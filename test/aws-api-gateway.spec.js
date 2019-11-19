@@ -37,10 +37,12 @@ tags('aws', 'auth', 'api')
     });
 
     it('returns a list of bucket files', () => {
+      /* eslint-disable no-unused-expressions */
       files = gateway.body;
       files.should.be.an('array').that.is.not.empty;
       files[0].should.be.an('object').that.is.not.empty;
       files[0].should.have.property('Key').that.is.a.string;
+      /* eslint-enable no-unused-expressions */
     });
 
     it('can download a file', async () => {
@@ -49,9 +51,7 @@ tags('aws', 'auth', 'api')
       file.downloadURL.should.contain(S3BucketUrl);
       file.downloadURL.should.contain(file.Key);
       const path = file.downloadURL.split('/')[3];
-      const download = await chai
-            .request(S3BucketUrl)
-            .get(`/${path}`);
+      const download = await chai.request(S3BucketUrl).get(`/${path}`);
       download.status.should.be.equal(200);
     });
   });

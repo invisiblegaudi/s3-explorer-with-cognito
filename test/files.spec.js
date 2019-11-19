@@ -17,11 +17,13 @@ tags('files', 's3', 'express', 'app')
     it('returns a list of files using default api', async () => {
       const { authToken } = await auth;
       files = await loadBucket(ApiGatewayUrl, authToken, S3Bucket);
+      /* eslint-disable no-unused-expressions */
       files.should.be.an('array').that.is.not.empty;
       files.forEach((file) => {
         file.should.be.an('object').that.is.not.empty;
         file.should.have.property('downloadURL').that.is.a.string;
       });
+      /* eslint-enable no-unused-expressions */
     });
 
     it('file links are valid', () => {
@@ -29,9 +31,7 @@ tags('files', 's3', 'express', 'app')
         file.downloadURL.should.contain(S3BucketUrl);
         file.downloadURL.should.contain(file.Key);
         const path = file.downloadURL.split('/')[3];
-        const download = await chai
-              .request(S3BucketUrl)
-              .get(`/${path}`);
+        const download = await chai.request(S3BucketUrl).get(`/${path}`);
 
         download.status.should.be.equal(200);
       });

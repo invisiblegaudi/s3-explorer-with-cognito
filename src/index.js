@@ -1,4 +1,5 @@
 const express = require('express');
+
 const app = express();
 const port = 3000;
 const { defaultApiFiles } = require('./files');
@@ -13,13 +14,17 @@ app.get('/:bucketName', async (req, res) => {
   try {
     const accessToken = await auth;
     const files = await defaultApiFiles(accessToken, bucketName);
-    res.render('files.pug', { bucketName, files })
-  } catch(e) {
-    res.render('error.pug', { error: e })
+    res.render('files.pug', { bucketName, files });
+  } catch (e) {
+    res.render('error.pug', { error: e });
   }
 });
 
-
-app.listen(port, () => console.log(`S3 Explorer listening on port ${port}`));
+/* eslint no-warning-comments: "error" */
+app.listen(port, () => {
+  /* eslint-disable no-console */
+  console.log(`S3 Explorer listening on port ${port}`);
+  /* eslint-enable no-console */
+});
 
 module.exports = app;
