@@ -4,7 +4,7 @@
   "description": "Allow AWS Cognito users access to S3 buckets via NodeJS",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint  **/*.js --ignore-path .gitignore",
+    "lint": "eslint \"**/*.js\" --ignore-path .gitignore",
     "pretest": "npm install",
     "preversion": "npm run test",
     "version": "",
