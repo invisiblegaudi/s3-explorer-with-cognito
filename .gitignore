@@ -43,7 +43,7 @@ bower_components
 build/Release
 
 # Dependency directories
-node_modules/
+#node_modules/
 jspm_packages/
 
 # TypeScript v1 declaration files
@@ -110,3 +110,5 @@ thumb
 sketch
 
 # End of https://www.gitignore.io/api/node,react
+config
+!config/*.example.json

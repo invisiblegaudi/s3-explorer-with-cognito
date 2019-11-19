@@ -19,7 +19,6 @@ tags('aws', 'auth', 'api')
       response = await chai
         .request(ApiGatewayUrl)
         .get('');
-
       response.should.have.property('status', 500);
     });
 
