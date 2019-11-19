@@ -1,11 +1,17 @@
 {
-  "name": "s3-explorer",
+  "name": "node-s3-cognito",
   "version": "1.0.0",
-  "description": "Allows you to browse the files of private S3 buckets",
+  "description": "Allow AWS Cognito users access to S3 buckets via NodeJS",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "dev": "npm-watch"
+    "lint": "eslint  **/*.js --ignore-path .gitignore",
+    "pretest": "npm install",
+    "preversion": "npm run test",
+    "version": "",
+    "postversion": "git push && git push --tags && npm publish",
+    "test": "npm run lint && mocha",
+    "dev": "npm-watch",
+    "start": "node src/index.js"
   },
   "watch": {
     "test": {
@@ -14,7 +20,7 @@
         "test",
         "views"
       ],
-      "extensions": "js, jsx, json, pug"
+      "extensions": "js, json, pug"
     }
   },
   "repository": {
