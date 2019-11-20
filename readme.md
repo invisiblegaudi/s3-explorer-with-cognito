@@ -36,13 +36,11 @@ Specify a name for your pool and click “Review Defaults”. Remove password re
 ### Install, build & run
 You are now ready to try it all out, so go ahead and `npm i && npm start`
 ### Use
-If all the steps have been followed propertly, you can go to http://localhost:3000/*YourBucketName* to see the files
+If all the steps have been followed properly, you can go to http://localhost:3000/*YourBucketName* to see the files
 ### TODO
 Things that I would like to do, to make this tool genuinely useful, are:
-- UI for Adding Congito Users, using ReactJS
-- Auto upload of lambda script 
+- UI for Adding Congito Users & customise replacement password
+- Auto deployment of lambda script 
 - Any other automatable setup steps using the AWS ClI
 - Bootstrap / Material UI for the front-end
 - Dockerise
-### Further Progress
-To view further progress on this project, please visit my github page http://v.gd/johnkavanagh where it will be hosted
