@@ -20,6 +20,7 @@ tags('aws', 'auth', 'api')
         .request(ApiGatewayUrl)
         .get('');
       response.should.have.property('status', 500);
+      return response;
     });
 
     it('responds with access token', async () => {
@@ -29,7 +30,8 @@ tags('aws', 'auth', 'api')
 
     it('allows access to lambda endpoint', async () => {
       const { accessToken } = response;
-      gateway = await chai.request(ApiGatewayUrl)
+      gateway = await chai
+        .request(ApiGatewayUrl)
         .get(`/${S3Bucket}`)
         .set('Authorization', accessToken);
       gateway.status.should.be.equal(200);
