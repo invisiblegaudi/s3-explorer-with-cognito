@@ -40,7 +40,7 @@
   "homepage": "https://gitlab.com/invisiblegaudi/s3-explorer#readme",
   "dependencies": {
     "amazon-cognito-identity-js": "^3.2.0",
-    "aws-sdk": "^2.568.0",
+    "aws-sdk": "^2.814.0",
     "express": "^4.17.1",
     "node-fetch": "^2.6.0",
     "pug": "^2.0.4"
